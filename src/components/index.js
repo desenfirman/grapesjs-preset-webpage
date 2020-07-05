@@ -3,5 +3,6 @@ export default (editor, config = {}) => {
   const defaultType = domc.getType('default');
   const defaultModel = defaultType.model;
   const defaultView = defaultType.view;
+  console.log([defaultModel, defaultView, defaultType]);
   // ...
 }

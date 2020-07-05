@@ -27,11 +27,13 @@ module.exports = (env = {}) => {
         libraryTarget: 'umd',
     },
     module: {
-      loaders: [{
+      loaders: [
+        {
           test: /\.js$/,
           loader: 'babel-loader',
           include: /src/,
-      }],
+        }
+      ],
     },
     externals: {'grapesjs': 'grapesjs'},
     plugins: plugins,
