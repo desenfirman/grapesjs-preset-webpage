@@ -2,9 +2,11 @@
 $prefix: 'gjs-' !default;
 
 /* Colors / Theme */
-$primaryColor: #463a3c;
-$secondaryColor: #b9a5a6;
-$tertiaryColor: #804f7b;
-$quaternaryColor: #d97aa6;
+$primaryColor: #373d49;
+$secondaryColor: #a0aabf;
+$tertiaryColor: #4c9790;
+$quaternaryColor: #35d7bb ;
 
-$topPanelHeight: 150px;
+$styleManagerHeight:9.5rem;
+$traitManagerHeight: 1.5rem;
+$topPanelHeight: $styleManagerHeight + $traitManagerHeight + 3.9rem;

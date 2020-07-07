@@ -1,17 +1,12 @@
 // import 'style.scss';
 
 export default (editor, config) => {
-
-
-
   // console.log(bm.getConfig().set('appendTo', '#blockss'));
-  
-  
-  
+
   const bm = editor.BlockManager;
-  let tableStyleStr = '';
-  let cellStyleStr = '';
-  const toAdd = name => config.blocks.indexOf(name) >= 0;
+  let tableStyleStr = "";
+  let cellStyleStr = "";
+  const toAdd = (name) => config.blocks.indexOf(name) >= 0;
   const opt = config;
   console.log(opt, bm);
   let tableStyle = opt.tableStyle || {};
@@ -23,56 +18,56 @@ export default (editor, config) => {
     cellStyleStr += `${prop}: ${cellStyle[prop]}; `;
   }
   bm.onLoad(() => {
-    bm.appendTo = '#blocks';
-  })
+    bm.appendTo = "#blocks";
+  });
   // bm.appendTo = opt.appendTo;
 
-  bm.add('sect100', {
-    label: 'Section',
-    category: 'Basic',
-    attributes: { class: 'gjs-fonts gjs-f-b1' },
+  bm.add("sect100", {
+    label: "Section",
+    category: "Basic",
+    attributes: { class: "gjs-fonts gjs-f-b1" },
     content: `<table style="${tableStyleStr}">
       <tr>
         <td style="${cellStyleStr}"></td>
       </tr>
       </table>`,
+    activate: true,
   });
-  bm.add('text', {
-    label: 'Text',
-    category: 'Basic',
-    attributes: { class: 'gjs-fonts gjs-f-text' },
+  bm.add("text", {
+    label: "Text",
+    category: "Basic",
+    attributes: { class: "gjs-fonts gjs-f-text" },
     content: {
-      type: 'text',
-      content: 'Insert your text here',
-      style: { padding: '10px' },
-      activeOnRender: 1
+      type: "text",
+      content: "Insert your text here",
+      style: { padding: "10px" },
+      activeOnRender: 1,
     },
   });
-  bm.add('image', {
-    label: 'Image',
-    category: 'Basic',
-    attributes: { class: 'gjs-fonts gjs-f-image' },
+  bm.add("image", {
+    label: "Image",
+    category: "Basic",
+    attributes: { class: "gjs-fonts gjs-f-image" },
     content: {
-      type: 'image',
-      style: { color: 'black' },
-      activeOnRender: 1
+      type: "image",
+      style: { color: "black" },
+      activeOnRender: 1,
     },
   });
-  bm.add('video', {
-    label: 'Video',
-    category: 'Basic',
-    attributes: { class: 'fa fa-youtube-play' },
+  bm.add("video", {
+    label: "Video",
+    category: "Basic",
+    attributes: { class: "fa fa-youtube-play" },
     content: {
-      type: 'video',
-      src: 'img/video2.webm',
+      type: "video",
+      src: "img/video2.webm",
       style: {
-        height: '350px',
-        width: '615px'
-      }
-    }
+        height: "350px",
+        width: "615px",
+      },
+    },
   });
-  let gridItem =
-    `<table class="grid-item-card">
+  let gridItem = `<table class="grid-item-card">
       <tr>
         <td class="grid-item-card-cell">
           <img class="grid-item-image" src="http://placehold.it/250x150/78c5d6/fff/" alt="Image"/>
@@ -87,19 +82,18 @@ export default (editor, config) => {
         </td>
       </tr>
     </table>`;
-  bm.add('grid-items', {
-    label: 'Grid Items',
-    category: 'Basic',
+  bm.add("grid-items", {
+    label: "Grid Items",
+    category: "Basic",
     content: `<table class="grid-item-row">
       <tr>
         <td class="grid-item-cell2-l">${gridItem}</td>
         <td class="grid-item-cell2-r">${gridItem}</td>
       </tr>
     </table>`,
-    attributes: { class: 'fa fa-th' }
+    attributes: { class: "fa fa-th" },
   });
-  let listItem =
-    `<table class="list-item">
+  let listItem = `<table class="list-item">
       <tr>
         <td class="list-item-cell">
           <table class="list-item-content">
@@ -116,19 +110,37 @@ export default (editor, config) => {
         </td>
       </tr>
     </table>`;
-  bm.add('list-items', {
-    label: 'List Items',
-    category: 'Basic',
+  bm.add("list-items", {
+    label: "List Items",
+    category: "Basic",
     content: listItem + listItem,
-    attributes: { class: 'fa fa-th-list' }
+    attributes: { class: "fa fa-th-list" },
   });
-  bm.add('map', {
+  bm.add("map", {
     label: "Map",
-    category: 'Basic',
-    attributes: { class: 'fa fa-map-o' },
+    category: "Basic",
+    attributes: { class: "fa fa-map-o" },
     content: {
-      type: 'map',
-      style: { height: '350px' }
+      type: "map",
+      style: { height: "350px" },
+    },
+  });
+  bm.add("custom-section-blocks", {
+    label: 'Section',
+    content:{
+      type: 'custom-section'
+    },
+    activate: true
+  });
+
+  editor.on("component:add", (model, argument) => {
+    //filter using component name
+    console.log(model.getName());
+    if (model.getName() === "modelName") {
+      //show modal
+    } //filter using css Class
+    if (model.getAttrToHTML().class === "className") {
+      //show model
     }
   });
 
@@ -167,4 +179,4 @@ export default (editor, config) => {
   //     <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
   //     </section>`
   // });
-}
+};

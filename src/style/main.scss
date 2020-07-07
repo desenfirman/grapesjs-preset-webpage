@@ -3,20 +3,9 @@
 .main-body {
   padding: 5px;
   width: 100%;
-  // height: 100%;
-  // background-color:rgb(234, 236, 237);
 }
 .row {
   vertical-align: top;
-}
-.container {
-  font-family: Helvetica, serif;
-  min-height: 150px;
-  padding: 5px;
-  margin: auto;
-  height: 0px;
-  width: 90%;
-  max-width: 75rem;
 }
 
 .card {
@@ -49,55 +38,52 @@
   width: 100%;
 }
 
-.main-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-container {
-  display: flex;
-  flex-flow: row wrap;
-}
-
 .wrapper {
   display: flex;
   flex-flow: row wrap;
   height: calc(100vh - #{$topPanelHeight});
+
 }
 
-/* We tell all items to be 100% width, via flex-basis */
-// .wrapper > * {
-//   flex: 1 100%;
-// }
+.gjs-editor-cont{
+  background-color:lighten($primaryColor, 60%);
+  padding: 3em 4em;
+  
+  .gjs-frame-wrapper{
+    background-color:lighten($primaryColor, 60%);
 
-/* Medium screens */
-@media all and (min-width: 600px) {
-  /* We tell both sidebars to share a row */
-  .aside {
-    flex: 1 1;
   }
+
 }
 
-/* Large screens */
-@media all and (min-width: 800px) {
-  /* We invert order of first sidebar and main
-   * And tell the main element to take twice as much width as the other two sidebars 
-   */
-  .main {
-    flex: 5 1;
-  }
-  .aside-1 {
-    order: 1;
-  }
-  .main {
-    order: 2;
-  }
-  .aside-2 {
-    order: 3;
-  }
-  .footer {
-    order: 4;
-  }
+.item-a {
+  grid-area: header;
+}
+.item-b {
+  grid-area: main;
+}
+.item-c {
+  grid-area: left-sidebar;
+}
+.item-d {
+  grid-area: right-sidebar;
+}
+.item-e {
+  grid-area: footer;
+}
+
+.main-container {
+  display: grid;
+  grid-template-columns: 15% 35% 35% 15%;
+  grid-template-rows: 27.5% 72.5%;
+  height: 100vh;
+  grid-template-areas: 
+    "header header header header"
+    "left-sidebar main main right-sidebar";
+  
+    &.collapse{
+      grid-template-rows: 25% 75%;
+    }
 }
 
 .gjs-blocks-cs,
@@ -107,22 +93,24 @@
   background-color: $primaryColor;
 }
 
+#layers-container {
+  overflow-y: scroll;
+  // height: max-content;
+}
+
+#blocks{
+  // height: 100%;
+}
+
 .gjs-cv-canvas {
   background-color: rgba(0, 0, 0, 0.15);
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  // bottom: 0;
   overflow: hidden;
-  // z-index: 1;
-  // position: absolute;
-  // left: 0;
   top: 0;
   text-shadow: 0 0 black;
 
-  &__frames {
-    margin: 10px;
-  }
 }
 
 .panel__top {
@@ -186,19 +174,29 @@
     &-top,
     &-left,
     &-right,
-    &-bottom,
-    &-border-radius,
+    &-bottom {
+      max-width: 15ch;
+    }
+
+    &-border {
+      &-top-left-radius,
+      &-top-right-radius,
+      &-bottom-left-radius,
+      &-bottom-right-radius {
+        max-width: 30ch;
+      }
+    }
+
     &-background-color,
     &-color,
     &-border-color,
     &-border-width,
-    &-border-style,
     &-transform-rotate-x,
     &-transform-rotate-y,
     &-transform-rotate-z,
     &-transform-scale-x,
     &-transform-scale-y,
-    &-transform-scale-z  {
+    &-transform-scale-z {
       max-width: 20ch;
     }
 
@@ -208,11 +206,7 @@
     &-font-weight,
     &-font-size,
     &-line-height,
-    &-letter-spacing,
-    &-border-top-left-radius,
-    &-border-top-right-radius,
-    &-border-bottom-left-radius,
-    &-border-bottom-right-radius{
+    &-letter-spacing {
       max-width: 30ch;
     }
 
@@ -221,14 +215,17 @@
       max-width: 50ch;
     }
 
-    &-box-shadow,
-    &-background,
     &-border {
-      max-width: 75ch;
+      width: 65ch;
     }
 
     &-border-radius {
-      max-width: 140ch;
+      max-width: 100ch;
+    }
+
+    &-box-shadow,
+    &-background {
+      max-width: 150ch;
     }
   }
 
@@ -236,7 +233,8 @@
   .gjs-sm-open {
     display: flex;
     flex-direction: row;
-    height: 10rem;
+    height: $styleManagerHeight;
+    border-bottom: none;
   }
 
   .gjs-sm-sectors {
@@ -264,12 +262,10 @@
   .gjs-sm-properties {
     left: 0;
     align-items: stretch;
+    padding: 10px;
 
     .gjs-sm-general > & {
       flex-wrap: wrap;
-    }
-    .gjs-sm-label {
-      width: 30ch;
     }
 
     .gjs-fields {
@@ -282,9 +278,10 @@
 
 #gjs-sm {
   &-layout,
-  &-decorations,
+  &-background,
   &-extra,
-  &-border-decorations {
+  &-border-style,
+  &-shadow {
     .gjs-sm-properties {
       flex-wrap: nowrap;
     }
@@ -310,6 +307,11 @@
 }
 .gjs-pn-panel {
   position: static;
+}
+
+#trait-manager-container {
+  height: $traitManagerHeight;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .#{$prefix} {
