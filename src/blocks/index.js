@@ -8,7 +8,7 @@ export default (editor, config) => {
   let cellStyleStr = "";
   const toAdd = (name) => config.blocks.indexOf(name) >= 0;
   const opt = config;
-  console.log(opt, bm);
+  console.log("Model: ", bm.getAll().models);
   let tableStyle = opt.tableStyle || {};
   let cellStyle = opt.cellStyle || {};
   for (let prop in tableStyle) {
@@ -17,20 +17,16 @@ export default (editor, config) => {
   for (let prop in cellStyle) {
     cellStyleStr += `${prop}: ${cellStyle[prop]}; `;
   }
-  bm.onLoad(() => {
-    bm.appendTo = "#blocks";
-  });
-  // bm.appendTo = opt.appendTo;
 
   bm.add("sect100", {
-    label: "Section",
+    label: 'Section',
     category: "Basic",
     attributes: { class: "gjs-fonts gjs-f-b1" },
-    content: `<table style="${tableStyleStr}">
-      <tr>
-        <td style="${cellStyleStr}"></td>
-      </tr>
-      </table>`,
+    content: {
+      type: 'custom-section',
+      
+      activeOnRender: 1,
+    },
     activate: true,
   });
   bm.add("text", {
@@ -125,58 +121,8 @@ export default (editor, config) => {
       style: { height: "350px" },
     },
   });
-  bm.add("custom-section-blocks", {
-    label: 'Section',
-    content:{
-      type: 'custom-section'
-    },
-    activate: true
-  });
+  // bm.add("custom-section", {
 
-  editor.on("component:add", (model, argument) => {
-    //filter using component name
-    console.log(model.getName());
-    if (model.getName() === "modelName") {
-      //show modal
-    } //filter using css Class
-    if (model.getAttrToHTML().class === "className") {
-      //show model
-    }
-  });
-
-  // toAdd('link-block') && bm.add('link-block', {
-  //   category: 'Basic',
-  //   label: 'Link Block',
-  //   attributes: { class: 'fa fa-link' },
-  //   content: {
-  //     type:'link',
-  //     editable: false,
-  //     droppable: true,
-  //     style:{
-  //       display: 'inline-block',
-  //       padding: '5px',
-  //       'min-height': '50px',
-  //       'min-width': '50px'
-  //     }
-  //   },
   // });
 
-  // toAdd('quote') && bm.add('quote', {
-  //   label: 'Quote',
-  //   category: 'Basic',
-  //   attributes: { class: 'fa fa-quote-right' },
-  //   content: `<blockquote class="quote">
-  //       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore ipsum dolor sit
-  //     </blockquote>`
-  // });
-
-  // toAdd('text-basic') && bm.add('text-basic', {
-  //   category: 'Basic',
-  //   label: 'Text section',
-  //   attributes: { class: 'gjs-fonts gjs-f-h1p' },
-  //   content: `<section class="bdg-sect">
-  //     <h1 class="heading">Insert title here</h1>
-  //     <p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-  //     </section>`
-  // });
 };

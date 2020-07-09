@@ -1,8 +1,10 @@
+import customSectionComp from "./customSection";
+
 export default (editor, config = {}) => {
   const domc = editor.DomComponents;
-  const defaultType = domc.getType('default');
+  const defaultType = domc.getType("default");
   const defaultModel = defaultType.model;
   const defaultView = defaultType.view;
-  console.log([defaultModel, defaultView, defaultType]);
   // ...
-}
+  domc.addType("custom-section", customSectionComp(defaultModel, defaultView));
+};

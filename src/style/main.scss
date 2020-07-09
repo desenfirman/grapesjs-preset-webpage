@@ -268,15 +268,18 @@
       flex-wrap: wrap;
     }
 
-    .gjs-fields {
+    
+  }
+}
+
+.gjs-fields {
       .gjs-field {
         margin-top: 5px;
       }
     }
-  }
-}
 
 #gjs-sm {
+  &-general,
   &-layout,
   &-background,
   &-extra,

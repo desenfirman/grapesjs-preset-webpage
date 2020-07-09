@@ -1,5 +1,4 @@
 import openImport from "./openImport";
-import openSectionSize from "./openSectionSize";
 
 import {
   cmdImport,
@@ -22,5 +21,4 @@ export default (editor, config) => {
     cmdClear,
     (e) => confirm(txtConfirm) && e.runCommand("core:canvas-clear")
   );
-  cm.add(cmdPromptInitSection, openSectionSize(editor, config));
 };
