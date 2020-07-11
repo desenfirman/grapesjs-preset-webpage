@@ -20,24 +20,32 @@
     </style>
   </head>
   <body>
-    <div class="main-container">
-      <div class="item-a panel__top" id="panel">
+    <!-- <div class="wrapper"> -->
+      
+    <div class="main-container" id="gjs-main-container">
+      <div class="panel__top" id="top-panel">
         <div class="panel__basic-actions">
           <div class="panel__basic-actions-1"></div>
           <div class="panel__basic-actions-2"></div>
         </div>
-        <div class="panel__toolbar">
-          <div id="style-manager-menu"></div>
-          <div id="style-manager-container"></div>
-          <div id="trait-manager-container"></div>
+      </div>
+      <div class="menu-list">
+        <div class="menu-list__wrapper">
+          <div id="style-manager-menu" class="gjs-pn-buttons"></div>
+          <div id="style-manager-menu__right" class="gjs-pn-buttons">
+              <a class="gjs-pn-btn gjs-two-color"> Hide Toolbar</a>
+          </div>
         </div>
       </div>
-      <div class="item-b" id="gjs">
+      <div class="panel__style" id="style-manager-container"></div>
+      <div class="panel__trait" id="trait-manager-container"></div>
+      <div class="main" id="gjs">
         
-        <link href="dist/grapesjs-preset-webpage.min.css" rel="stylesheet" />
+        <!-- <link href="dist/grapesjs-preset-webpage.min.css" rel="stylesheet" /> -->
       </div>
-      <div class="item-c" id="blocks"></div>
-      <div class="item-d" id="layers-container"></div>
+      <div class="left-sidebar" id="blocks"></div>
+      <div class="right-sidebar" id="layers-container"></div>
+    <!-- </div> -->
     </div>
     <script type="text/javascript">
       var editor = grapesjs.init({
@@ -62,7 +70,7 @@
         },
         styleManager: {
           appendTo: "#style-manager-container",
-          hideNotStylable: true,
+          hideNotStylable: false,
           highlightChanged: false,
           highlightComputed: false,
         },

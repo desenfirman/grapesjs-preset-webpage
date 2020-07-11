@@ -13,24 +13,65 @@ export default (editor, config) => {
             name: "General",
             open: true,
             buildProps: [
-              "float",
-              "display",
-              "position",
-              "top",
-              "right",
-              "left",
-              "bottom",
+              // "background",
+              // 'border',
+              'border-width',
+              'border-style',
+              'border-color',
+              // 'border-radius',
+
+              // // "float",
+              // // "display",
+              // // "position",
+              // // "top",
+              // // "right",
+              // // "left",
+              // // "bottom",
               "width",
               "height",
-              "max-width",
-              "min-height",
+              // "max-width",
+              // "min-height",
+              // 'margin',
+              // 'padding'
             ],
+            // properties: [
+              // {
+              //   property: "background-image",
+              //   type: 'file'
+              // },
+              // {
+              //   property: "background-color",
+              //   type: 'color'
+              // },
+              // {
+              //   property: ""
+              // }
+            // ],
+          },
+          {
+            id: "background-util",
+            name: "Background",
+            open: true,
+            buildProps: [
+              'background-image',
+              'background-repeat',
+              'background-position',
+              'background-attachment',
+              'background-size',
+              'background-color'
+            ]
           },
           {
             id: "layout",
-            name: "Layout",
+            name: "Margin and Padding",
             open: true,
-            buildProps: ["margin", "padding"],
+            // buildProps: [
+            //   "margin-top", "margin-bottom", "margin-left", "margin-right",
+            //   "padding-top", "padding-bottom", "padding-left", "padding-right"
+            //   ],
+            buildProps: [
+              'margin', 'padding'
+            ]
           },
           {
             id: "typography",
@@ -58,30 +99,30 @@ export default (editor, config) => {
               },
             ],
           },
-          {
-            id: "border-style",
-            name: "Border Style",
-            open: true,
-            buildProps: ["border-radius", "border", "border-radius-c"],
-          },
-          {
-            id: "shadow",
-            name: "Shadow",
-            open: true,
-            buildProps: ["box-shadow"],
-          },
-          {
-            id: "background",
-            name: "Background",
-            open: true,
-            buildProps: ["background", "background-color"],
-          },
-          {
-            id: "extra",
-            name: "Extra",
-            open: true,
-            buildProps: ["transform", "transition", "perspective"],
-          },
+          // {
+          //   id: "border-style",
+          //   name: "Border Style",
+          //   open: true,
+          //   buildProps: ["border-radius", "border", "border-radius-c"],
+          // },
+          // {
+          //   id: "shadow",
+          //   name: "Shadow",
+          //   open: true,
+          //   buildProps: ["box-shadow"],
+          // },
+          // {
+          //   id: "background",
+          //   name: "Background",
+          //   open: true,
+          //   buildProps: ["background", "background-color"],
+          // },
+          // {
+          //   id: "extra",
+          //   name: "Extra",
+          //   open: true,
+          //   buildProps: ["transform", "transition", "perspective"],
+          // },
         ]
   );
 
@@ -91,39 +132,44 @@ export default (editor, config) => {
       title: "General",
     },
     {
+      id: "gjs-sm-background-util",
+      title: "Background"
+    },
+    {
       id: "gjs-sm-layout",
-      title: "Layout",
+      title: "Margin and Padding",
     },
     {
       id: "gjs-sm-typography",
-      title: "Typography",
+      title: "Font & Typography",
     },
-    {
-      id: "gjs-sm-border-style",
-      title: "Border Style",
-    },
-    {
-      id: "gjs-sm-shadow",
-      title: "Shadow",
-    },
-    {
-      id: "gjs-sm-background",
-      title: "Background",
-    },
-    {
-      id: "gjs-sm-extra",
-      title: "Extra",
-    },
+    // {
+    //   id: "gjs-sm-border-style",
+    //   title: "Border Style",
+    // },
+    // {
+    //   id: "gjs-sm-shadow",
+    //   title: "Shadow",
+    // },
+    // {
+    //   id: "gjs-sm-background",
+    //   title: "Background",
+    // },
+    // {
+    //   id: "gjs-sm-extra",
+    //   title: "Extra",
+    // },
   ];
 
   const showStyleManagerMenu = (active_id, siblings) => {
     siblings.forEach((el) => {
       if (el.id === active_id) {
         el.style.display = "flex";
-        document.getElementById(active_id + "-btn").classList.add("active");
+        document.getElementById(active_id + "-btn").className = 'gjs-four-color active gjs-pn-btn';
+        
       } else {
         el.style.display = "none";
-        document.getElementById(el.id + "-btn").classList = [];
+        document.getElementById(el.id + "-btn").className = 'gjs-pn-btn gjs-two-color';
       }
     });
   };
@@ -147,8 +193,9 @@ export default (editor, config) => {
       comp.appendChild(a);
       if (curr.id !== "gjs-sm-general") {
         document.getElementById(curr.id).style.display = "none";
+        a.className = 'gjs-pn-btn gjs-two-color';
       } else {
-        a.classList.add("active");
+        a.className = "gjs-four-color active gjs-pn-btn";
       }
     });
   });

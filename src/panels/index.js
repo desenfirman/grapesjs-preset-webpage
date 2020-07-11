@@ -53,10 +53,10 @@ export default (editor, config) => {
   //     ],
   //   },
   // ]);
-  pn.addPanel({
-    id: "panel-top",
-    el: ".panel__top",
-  });
+  // pn.addPanel({
+  //   id: "panel-top",
+  //   el: ".panel__top",
+  // });
 
   const panelBasicActions = pn.addPanel({
     id: "basic-actions",
@@ -65,9 +65,9 @@ export default (editor, config) => {
   panelBasicActions.get("buttons").add([
     
     {
-      id: expt,
+      id: cmdImport,
       className: "fa fa-code",
-      command: (e) => e.runCommand(expt),
+      command: (e) => e.runCommand(cmdImport),
     },
     {
       id: "undo",
