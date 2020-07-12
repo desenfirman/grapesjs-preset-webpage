@@ -1,3 +1,5 @@
+import showStyleManagerMenu from '../styles/showStyleManagerMenu';
+
 import customSectionComp from "./customSection";
 import gridItemsComp from "./gridItems";
 import listItemsComp from "./listItems";
@@ -40,6 +42,28 @@ export default (editor, config = {}) => {
         },
       },
   });
+
+  editor.on('component:selected', model => {
+    // console.log('New content', model.get('content'));
+    var siblings = document.getElementsByClassName("gjs-sm-sectors")[0]
+      .childNodes;
+    document.getElementById("gjs-traits-manager-btn").style.display = "none";
+
+    
+    console.log(model.props());
+    if (model.props().type === 'text') {
+      showStyleManagerMenu('gjs-sm-typography', siblings);
+    }else if (model.props().type !== 'wrapper') {
+      document.getElementById("gjs-traits-manager-btn").textContent = "Component type: " + model.props().type;
+      document.getElementById("gjs-traits-manager-btn").style.display = "inline-block";
+
+      // showStyleManagerMenu('gjs-sm-general', siblings);
+    }
+    else{
+
+    }
+  })
+
 
 
 };

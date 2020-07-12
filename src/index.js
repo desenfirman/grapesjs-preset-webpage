@@ -117,9 +117,6 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
       config[name] = defaults[name];
   }
 
-
-
-
   const {
     blocksOpt,
     navbarOpts,

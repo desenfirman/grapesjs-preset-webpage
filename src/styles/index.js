@@ -1,8 +1,11 @@
-import ReactDOM from "react-dom";
+import showStyleManagerMenu from './showStyleManagerMenu';
+
 
 export default (editor, config) => {
   const sm = editor.StyleManager;
   const csm = config.customStyleManager;
+  const pfx = editor.getConfig("stylePrefix")
+
 
   sm.getSectors().reset(
     csm && csm.length
@@ -143,10 +146,10 @@ export default (editor, config) => {
       id: "gjs-sm-typography",
       title: "Font & Typography",
     },
-    // {
-    //   id: "gjs-sm-border-style",
-    //   title: "Border Style",
-    // },
+    {
+      id: "gjs-traits-manager",
+      title: "Component Traits",
+    },
     // {
     //   id: "gjs-sm-shadow",
     //   title: "Shadow",
@@ -161,18 +164,6 @@ export default (editor, config) => {
     // },
   ];
 
-  const showStyleManagerMenu = (active_id, siblings) => {
-    siblings.forEach((el) => {
-      if (el.id === active_id) {
-        el.style.display = "flex";
-        document.getElementById(active_id + "-btn").className = 'gjs-four-color active gjs-pn-btn';
-        
-      } else {
-        el.style.display = "none";
-        document.getElementById(el.id + "-btn").className = 'gjs-pn-btn gjs-two-color';
-      }
-    });
-  };
 
   window.addEventListener("load", () => {
     var comp = document.getElementById("style-manager-menu");
@@ -190,13 +181,53 @@ export default (editor, config) => {
         () => showStyleManagerMenu(curr.id, siblings),
         false
       );
+      if (curr.id === 'gjs-traits-manager') {
+        a.style.display = 'none';
+      }
       comp.appendChild(a);
       if (curr.id !== "gjs-sm-general") {
-        document.getElementById(curr.id).style.display = "none";
-        a.className = 'gjs-pn-btn gjs-two-color';
+        if (curr.id === "gjs-traits-manager") {
+          document.getElementsByClassName('gjs-trt-traits')[0].style.display = "none";
+          a.className = 'gjs-pn-btn gjs-four-bg-inactive gjs-two-color';
+        }
+        else{
+          document.getElementById(curr.id).style.display = "none";
+          a.className = 'gjs-pn-btn gjs-two-color';
+        }
       } else {
         a.className = "gjs-four-color active gjs-pn-btn";
       }
     });
+
+    let btn_collapse_menubar = document.getElementById("gjs-hide-toolbar-btn");
+
+    btn_collapse_menubar.addEventListener(
+      "click",
+      () => {
+        const main_container = document.getElementById(`${pfx}main-container`);
+        if (main_container.classList.contains('collapse')) {
+          document.getElementById("style-manager-container").style.display = 'block';
+          btn_collapse_menubar.textContent = 'Hide Toolbar';
+          main_container.classList.remove('collapse');      
+        } else {
+          document.getElementById("style-manager-container").style.display = 'none';
+          btn_collapse_menubar.textContent = 'Show Toolbar';
+          main_container.classList.add('collapse');
+        }
+      },
+      false
+
+    );
+    // add handler for collapse expand menu
+
   });
+
+
+  // trait manager merging into style manager toolbar too
+
+
+
+
+  // 
+
 };

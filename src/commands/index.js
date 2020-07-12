@@ -33,9 +33,7 @@ export default (editor, config) => {
       }
     },
     run(editor, sender){
-      console.log(sender, editor);
       const main_container = document.getElementById(`${pfx}main-container`);
-      console.log(main_container.children)
       if (main_container.classList.contains('preview')) {
         [...main_container.children].forEach((el) => {
           if (el.id != 'top-panel' && el.id != 'gjs') {

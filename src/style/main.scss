@@ -7,7 +7,6 @@
   
   .gjs-frame-wrapper{
     background-color:lighten($primaryColor, 60%);
-
   }
 
 }
@@ -15,46 +14,48 @@
 .panel__top {
   grid-area: top-panel;
   background-color: $primaryColor;
-
 }
+
 .menu-list{
   grid-area: menu-list;
   height: 100%;
   background-color: $primaryColor;
+
   .menu-list__wrapper{
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.1);
-    
   }
 
 }
+
 .panel__style{
   grid-area: toolbar-style;
   background-color: $primaryColor;
 }
+
 .panel__trait{
   grid-area: toolbar-trait;
   background-color: $primaryColor
 }
+
 .main {
   grid-area: main;
 }
+
 .left-sidebar {
   grid-area: left-sidebar;
   height: 100%;
 }
+
 .right-sidebar {
   grid-area: right-sidebar;
-}
-.footer {
-  grid-area: footer;
 }
 
 .main-container {
   display: grid;
   grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 4% 4% 13% 6% 73%;
+  grid-template-rows: 4% 4% 13% 79%;
   width: 100%;
   min-height: 100vh;
 
@@ -66,29 +67,32 @@
     "top-panel top-panel top-panel top-panel"
     "menu-list menu-list menu-list menu-list"
     "toolbar-style toolbar-style toolbar-style toolbar-style"
-    "toolbar-trait toolbar-trait toolbar-trait toolbar-trait"
     "left-sidebar main main right-sidebar";
   
-    &.preview{
+    &.preview {
       grid-template-rows: 4% 96%;
+      grid-template-areas: 
+        "top-panel top-panel top-panel top-panel"
+        "main main main main";
+    }
 
-
-       grid-template-areas: 
-      "top-panel top-panel top-panel top-panel"
-      "main main main main";
+    &.collapse {
+      grid-template-rows: 4% 4% 92%;
+      grid-template-areas: 
+        "top-panel top-panel top-panel top-panel"
+        "menu-list menu-list menu-list menu-list"
+        "left-sidebar main main right-sidebar";
     }
 }
 
 .gjs-blocks-cs,
 .gjs-layer {
-  // position: absolute;
   height: 100%;
   background-color: $primaryColor;
 }
 
 #layers-container {
   overflow-y: scroll;
-  // height: max-content;
 }
 
 .gjs-cv-canvas {
@@ -106,25 +110,19 @@
   display: block;
   padding: 0;
   width: 100%;
-  // height: $topPanelHeight;
 
   .panel__basic-actions {
-    // flex-direction: row;
     display: inline-block;
 
     width: 100%;
-    // justify-content: space-between;
     padding: 0;
 
     .panel__basic-actions-1 {
-      // justify-content: flex-start;
       padding: 0;
     }
     .panel__basic-actions-2 {
-      float: right;
-      // justify-content: flex-end;
-
       padding: 0;
+      float: right;
     }
   }
 
@@ -198,7 +196,6 @@
 
     &-color,
     &-border-color,
-    &-border-width,
     &-background-image{
       max-width: 25ch;
     }
@@ -218,6 +215,7 @@
     &-display,
     &-font-family,
     &-font-weight,
+    &-border-width,
     &-font-size,
     &-line-height,
     &-letter-spacing {
@@ -253,7 +251,6 @@
   }
 
   .gjs-sm-sectors {
-    width: 100vw;
     background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
 
@@ -280,18 +277,21 @@
   }
 }
 
-// .gjs-fields {
-//       .gjs-field {
-//         margin-top: 5px;
-//       }
-//     }
-
-
 .gjs-trt-traits {
   display: flex;
   flex-direction: row;
+  width: 100%;
+  height: 100%;
+  
+
   &__wrp {
     justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+  .gjs-trt-trait{
+    background-color: none;
+
+    min-width: 30ch;
   }
 }
 
@@ -304,6 +304,7 @@
     box-shadow: none;
   }
 }
+
 .gjs-pn-panel {
   position: static;
 }
@@ -315,6 +316,10 @@
     &#{$cnum} {
       &-bg {
         background-color: $ccol;
+      }
+
+      &-bg-inactive {
+        background-color: transparentize(desaturate($ccol, 50%), 0.7);
       }
 
       &-color {
