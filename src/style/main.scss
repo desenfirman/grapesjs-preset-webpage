@@ -282,16 +282,22 @@
   flex-direction: row;
   width: 100%;
   height: 100%;
+  flex-wrap: nowrap;
+
   
 
   &__wrp {
     justify-content: flex-start;
-    flex-wrap: nowrap;
+
   }
   .gjs-trt-trait{
+     &__wrp {
+    justify-content: flex-start;
+    height: fit-content;
+    }
     background-color: none;
 
-    min-width: 30ch;
+    min-width:30ch;
   }
 }
 

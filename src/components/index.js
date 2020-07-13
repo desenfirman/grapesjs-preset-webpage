@@ -17,7 +17,7 @@ export default (editor, config = {}) => {
   domc.addType("grid-items", gridItemsComp(defaultModel, defaultView));
   domc.addType("list-items", listItemsComp(defaultModel, defaultView));
 
-  editor.on('component:create', model => { if (model.get('type') === 'video') { editor.runCommand('open-assets', { target: model }); } });
+  // editor.on('component:create', model => { if (model.get('type') === 'video') { editor.runCommand('open-assets', { target: model }); } });
   
   domc.addType("map", {
     view: {
@@ -43,6 +43,25 @@ export default (editor, config = {}) => {
       },
   });
 
+  domc.addType("video", {
+    model: {
+      getProviderTrait() {
+        return {
+          type: 'select',
+          label: 'Provider',
+          name: 'provider',
+          changeProp: 1,
+          options: [
+            { value: 'so', name: 'HTML5 Source' },
+            { value: 'yt', name: 'Youtube' },
+            { value: 'ytnc', name: 'Youtube (no cookie)' },
+          ]
+        };
+      },
+      
+    }
+  });
+
   editor.on('component:selected', model => {
     // console.log('New content', model.get('content'));
     var siblings = document.getElementsByClassName("gjs-sm-sectors")[0]
@@ -56,14 +75,46 @@ export default (editor, config = {}) => {
     }else if (model.props().type !== 'wrapper') {
       document.getElementById("gjs-traits-manager-btn").textContent = "Component type: " + model.props().type;
       document.getElementById("gjs-traits-manager-btn").style.display = "inline-block";
-
-      // showStyleManagerMenu('gjs-sm-general', siblings);
+      console.log(model.props().type in ['video', 'image', 'map'])
+      if (model.props().type === 'video' || 
+          model.props().type === 'image' || 
+          model.props().type === 'map' ||
+          model.props().type === 'lory-slider'
+          ){
+        showStyleManagerMenu('gjs-traits-manager', siblings);
+      }
     }
-    else{
+  });
 
+  domc.addType("lory-slider", {
+    model: {
+      style: {
+          position: 'relative',
+          width: '100%',
+          margin: '0 auto',
+      },
     }
-  })
+  });
 
+  domc.addType("lory-slides", {
+    model: {
+      style: {
+          position: 'relative',
+          width: '100%',
+          margin: '0 auto',
+      },
+    }
+  });
+
+  domc.addType("lory-frame", {
+    model: {
+      style: {
+          position: 'relative',
+          width: '100%',
+          margin: '0 auto',
+      },
+    }
+  });
 
 
 };

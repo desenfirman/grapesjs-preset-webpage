@@ -21,7 +21,6 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-b1" },
     content: {
       type: 'custom-section',
-      
       activeOnRender: 1,
     },
     activate: true,
@@ -34,7 +33,7 @@ export default (editor, config) => {
       type: "text",
       content: "Insert your text here",
       style: { padding: "10px" },
-      activeOnRender: 1,
+      activeOnRender: 0,
     },
   });
   bm.add("image", {

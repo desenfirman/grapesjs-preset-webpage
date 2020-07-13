@@ -24,7 +24,7 @@ export default (editor, config) => {
   );
 
   cm.add('preview', {
-     fsChanged(pfx, e) {
+    fsChanged(pfx, e) {
       var d = document;
       var ev = (pfx || '') + 'fullscreenchange';
       if (!this.isEnabled()) {

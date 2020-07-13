@@ -1,5 +1,6 @@
 import showStyleManagerMenu from './showStyleManagerMenu';
 
+import fontDefinitions from './fontDefinitions';
 
 export default (editor, config) => {
   const sm = editor.StyleManager;
@@ -84,6 +85,7 @@ export default (editor, config) => {
               "font-family",
               "font-size",
               "font-weight",
+              "font-style",
               "letter-spacing",
               "color",
               "line-height",
@@ -99,6 +101,22 @@ export default (editor, config) => {
                   { value: "right", className: "fa fa-align-right" },
                   { value: "justify", className: "fa fa-align-justify" },
                 ],
+              },
+              {
+                property: "font-style",
+                type: 'select',
+                defaults: 'normal',
+                list: [
+                  {
+                    value: 'normal'
+                  },
+                  {
+                    value: 'italic',
+                  },
+                  {
+                    value: 'oblique'
+                  }
+                ]
               },
             ],
           },
@@ -178,7 +196,11 @@ export default (editor, config) => {
       a.id = curr.id + "-btn";
       a.addEventListener(
         "click",
-        () => showStyleManagerMenu(curr.id, siblings),
+        () => {
+            showStyleManagerMenu(curr.id, siblings);
+            editor.trigger('change:canvasOffset');
+            editor.refresh();
+          },
         false
       );
       if (curr.id === 'gjs-traits-manager') {
@@ -214,6 +236,8 @@ export default (editor, config) => {
           btn_collapse_menubar.textContent = 'Show Toolbar';
           main_container.classList.add('collapse');
         }
+        editor.trigger('change:canvasOffset');
+        editor.refresh();
       },
       false
 
@@ -228,6 +252,19 @@ export default (editor, config) => {
 
 
 
-  // 
+
+
+
+  // adding fonts
+  let fontProperty = sm.getProperty('typography', 'font-family');
+  let list = fontProperty.get('list');
+
+  fontDefinitions.forEach((font) => {
+    list.push(font)
+  });
+  fontProperty.set('list', list);
+  // sm.render();
+
+  
 
 };

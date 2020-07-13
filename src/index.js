@@ -107,7 +107,40 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
     sliderOpts:{
       sliderBlock:{
         category: 'Basic'
-      }
+      },
+      sliderProps:{
+        style: {
+          position: 'relative',
+          width: '100%',
+          margin: '0 auto',
+        },
+      },
+      slidesProps:{
+        style: {
+          width: '100%',
+        },
+      },
+      frameProps: {
+        style:{
+          width: '89.795918367%',
+           margin: '0 auto',
+          position: 'relative',
+          overflow: 'hidden',
+          'white-space': 'nowrap'
+        }
+      },
+      slideProps:{
+        style: {
+          width: '100%',
+          display: `inline-block`,
+          position: 'relative',
+          color: '#fff',
+          'vertical-align': 'top',
+          'min-height': '130px',
+          'white-space': 'normal',
+          'background-color': 'rgba(0, 0, 0, 0.1)',
+        },
+      },
     }
   };
 
