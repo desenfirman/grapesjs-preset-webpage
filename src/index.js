@@ -109,8 +109,7 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
         category: 'Basic'
       },
       sliderProps:{
-        resizeable: 1,
-        draggable: 1,
+        resizeable: true,
         style: {
           position: 'relative',
           width: '100%',
