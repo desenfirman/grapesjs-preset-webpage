@@ -95,6 +95,8 @@ export default (defaultModel, defaultView) => {
           attributes:{
             columnSize: 0,
           },
+          resizeable: 1,
+          draggable: 1,
           style: {
                 height: '150px',
                 margin: '0 auto 10px auto',

@@ -68,14 +68,13 @@ export default (editor, config = {}) => {
       .childNodes;
     document.getElementById("gjs-traits-manager-btn").style.display = "none";
 
-    
-    console.log(model.props());
+    editor.trigger('change:canvasOffset');
+        editor.refresh();
     if (model.props().type === 'text') {
       showStyleManagerMenu('gjs-sm-typography', siblings);
     }else if (model.props().type !== 'wrapper') {
       document.getElementById("gjs-traits-manager-btn").textContent = "Component type: " + model.props().type;
       document.getElementById("gjs-traits-manager-btn").style.display = "inline-block";
-      console.log(model.props().type in ['video', 'image', 'map'])
       if (model.props().type === 'video' || 
           model.props().type === 'image' || 
           model.props().type === 'map' ||
@@ -83,36 +82,6 @@ export default (editor, config = {}) => {
           ){
         showStyleManagerMenu('gjs-traits-manager', siblings);
       }
-    }
-  });
-
-  domc.addType("lory-slider", {
-    model: {
-      style: {
-          position: 'relative',
-          width: '100%',
-          margin: '0 auto',
-      },
-    }
-  });
-
-  domc.addType("lory-slides", {
-    model: {
-      style: {
-          position: 'relative',
-          width: '100%',
-          margin: '0 auto',
-      },
-    }
-  });
-
-  domc.addType("lory-frame", {
-    model: {
-      style: {
-          position: 'relative',
-          width: '100%',
-          margin: '0 auto',
-      },
     }
   });
 

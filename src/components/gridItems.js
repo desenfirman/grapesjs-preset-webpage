@@ -62,7 +62,6 @@ const contentDefault = {
                   style: {
                     overflow: 'hidden',
                     'border-radius': '3px',
-                    'text-align': 'center',
                     padding: 0,
                   },
                   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
@@ -95,6 +94,8 @@ export default (defaultModel, defaultView) => {
           attributes:{
             columnSize: 0,
           },
+          resizeable: 1,
+          draggable: 1,
           style: {
                 height: '150px',
                 margin: '0 auto 10px auto',

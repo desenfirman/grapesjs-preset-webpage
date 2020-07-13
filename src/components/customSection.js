@@ -17,6 +17,8 @@ export default (defaultModel, defaultView) => {
 	      defaults: {
 	        ...defaultModel.prototype.defaults,
 	        tagName: 'table',
+	        resizable:1,
+	        draggable: 1,
 	        attributes:{
 	          columnSize: 0,
 	        },
