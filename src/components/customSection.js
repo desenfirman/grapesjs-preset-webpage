@@ -1,6 +1,7 @@
 import modalBoxForm from "./misc/modalBoxForm";
 
 
+
 export default (defaultModel, defaultView) => {
 	return {
 	    isComponent(el) {
@@ -48,7 +49,6 @@ export default (defaultModel, defaultView) => {
 	              resizable: true,
 	              style: {
 	                width: `${sect_percentage}%;`,
-	                'min-width': `${sect_percentage}% !important;`,
 	                padding: '0',
 	                margin: '0',
 	                'vertical-align': 'top'

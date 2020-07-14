@@ -66,23 +66,16 @@ export default (editor, config = {}) => {
     // console.log('New content', model.get('content'));
     var siblings = document.getElementsByClassName("gjs-sm-sectors")[0]
       .childNodes;
-    document.getElementById("gjs-traits-manager-btn").style.display = "none";
 
-    editor.trigger('change:canvasOffset');
-        editor.refresh();
+    
     if (model.props().type === 'text') {
       showStyleManagerMenu('gjs-sm-typography', siblings);
-    }else if (model.props().type !== 'wrapper') {
-      document.getElementById("gjs-traits-manager-btn").textContent = "Component type: " + model.props().type;
-      document.getElementById("gjs-traits-manager-btn").style.display = "inline-block";
-      if (model.props().type === 'video' || 
-          model.props().type === 'image' || 
-          model.props().type === 'map' ||
-          model.props().type === 'lory-slider'
-          ){
-        showStyleManagerMenu('gjs-traits-manager', siblings);
-      }
     }
+    else {
+      showStyleManagerMenu('gjs-sm-general', siblings);
+    }
+    editor.trigger('change:canvasOffset');
+    editor.refresh();
   });
 
 

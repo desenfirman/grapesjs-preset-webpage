@@ -188,4 +188,5 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
   styles(editor, config);
   // console.log(editor.BlockManager);
 
+
 });

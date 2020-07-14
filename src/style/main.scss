@@ -34,9 +34,16 @@
   background-color: $primaryColor;
 }
 
+
 .panel__trait{
   grid-area: toolbar-trait;
-  background-color: $primaryColor
+  background-color: $primaryColor;
+  #trait-manager-container {
+    background-color: rgba(0, 0, 0, 0.1);
+    height: 100%;
+    width: 100%;
+  }
+
 }
 
 .main {
@@ -55,7 +62,7 @@
 .main-container {
   display: grid;
   grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 4% 4% 13% 79%;
+  grid-template-rows: 4% 12% 6% 78%;
   width: 100%;
   min-height: 100vh;
 
@@ -65,8 +72,8 @@
 
   grid-template-areas: 
     "top-panel top-panel top-panel top-panel"
-    "menu-list menu-list menu-list menu-list"
     "toolbar-style toolbar-style toolbar-style toolbar-style"
+    "toolbar-trait toolbar-trait toolbar-trait toolbar-trait"
     "left-sidebar main main right-sidebar";
   
     &.preview {
@@ -142,7 +149,7 @@
     display: inline-block;
     height: 100%;
     &.active {
-      background-color: rgba(0, 0, 0, 0.1);
+      // background-color: rgba(0, 0, 0, 0.1);
     }
   }
 }
@@ -158,7 +165,7 @@
 
     height: 100%;
     &.active {
-      background-color: rgba(0, 0, 0, 0.1);
+      // background-color: rgba(0, 0, 0, 0.1);
     }
   }
 }
@@ -167,8 +174,8 @@
   display: block;
 
   #gjs-sm {
-    &-width,
-    &-height,
+    // &-width,
+    // &-height,
     &-max-width,
     &-min-height,
     &-border-style {
@@ -180,7 +187,8 @@
       &-top-right-radius,
       &-bottom-left-radius,
       &-bottom-right-radius {
-        max-width: 30ch;
+        max-width: 20ch;
+        display: inline-flex;
       }
     }
 
@@ -195,8 +203,7 @@
 
 
     &-color,
-    &-border-color,
-    &-background-image{
+    &-border-color{
       max-width: 25ch;
     }
 
@@ -205,21 +212,24 @@
       &-position,
       &-repeat,
       &-attachment,
-      &-size,
-      &-color{
+      // &-color,
+      &-size
+      {
         max-width: 30ch;
       }
     }
+
 
     &-text-align,
     &-display,
     &-font-family,
     &-font-weight,
+    &-font-style,
     &-border-width,
     &-font-size,
     &-line-height,
     &-letter-spacing {
-      max-width: 30ch;
+      max-width: 40ch;
     }
 
     &-float,
@@ -232,30 +242,41 @@
     }
 
     &-border {
-      width: 65ch;
+      max-width: 80ch;
     }
 
     &-border-radius {
-      max-width: 100ch;
+      width: 50ch;
     }
 
     &-box-shadow,
     &-background {
-      max-width: 150ch;
+      max-width: 45ch;
+    }
+
+    &-dimensions {
+      max-width: 70ch;
     }
   }
 
   .gjs-sm-properties {
       flex-wrap: nowrap;
       padding: 0;
+      align-items: stretch;
+  }
+
+  .gjs-sm-property {
+    align-items: center;
+    margin-bottom: 0;
   }
 
   .gjs-sm-sectors {
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
 
     height: 100%;
   }
+
 
   .gjs-sm-sector {
     flex-direction: column;
@@ -283,6 +304,8 @@
   width: 100%;
   height: 100%;
   flex-wrap: nowrap;
+  background-color: rgba(0, 0, 0, 0.1);
+
 
   
 
