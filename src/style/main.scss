@@ -62,7 +62,7 @@
 .main-container {
   display: grid;
   grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 4% 12% 6% 78%;
+  grid-template-rows: 4% 6% 90%;
   width: 100%;
   min-height: 100vh;
 
@@ -73,7 +73,6 @@
   grid-template-areas: 
     "top-panel top-panel top-panel top-panel"
     "toolbar-style toolbar-style toolbar-style toolbar-style"
-    "toolbar-trait toolbar-trait toolbar-trait toolbar-trait"
     "left-sidebar main main right-sidebar";
   
     &.preview {
@@ -197,7 +196,7 @@
       &-right,
       &-top,
       &-bottom {
-        max-width: 30ch;
+        width: 100%;
       }
     }
 
@@ -257,6 +256,17 @@
     &-dimensions {
       max-width: 70ch;
     }
+
+    &-button-toogle{
+      width: 14%;
+      button{
+        font-size: 2.5ch;
+      }
+    }
+
+    &-general, &-typography {
+      width: 84%;
+    }
   }
 
   .gjs-sm-properties {
@@ -299,9 +309,9 @@
 }
 
 .gjs-trt-traits {
-  display: flex;
+  display: inline-block;
   flex-direction: row;
-  width: 100%;
+  width: 84%;
   height: 100%;
   flex-wrap: nowrap;
   background-color: rgba(0, 0, 0, 0.1);
@@ -309,18 +319,22 @@
 
   
 
-  &__wrp {
-    justify-content: flex-start;
-
-  }
+  
   .gjs-trt-trait{
      &__wrp {
-    justify-content: flex-start;
-    height: fit-content;
+      display: inline-flex;
     }
     background-color: none;
+    .gjs-label-wrp{
+      width: fit-content;
+    }
 
-    min-width:30ch;
+    .gjs-field-wrp{
+      width: fit-content;
+      max-width: 30ch;
+      margin: auto 5px;
+    }
+
   }
 }
 

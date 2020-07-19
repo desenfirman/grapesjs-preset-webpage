@@ -27,7 +27,7 @@ export default (defaultModel, defaultView) => {
 	              height: '150px',
 	              margin: '0 auto 10px auto',
 	              padding: '5px 5px 5px 5px',
-	              width: '100%'
+	              width: '100%',
 	          },
 	        components: []
 	      },

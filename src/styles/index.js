@@ -13,6 +13,8 @@ export default (editor, config) => {
   const sm = editor.StyleManager;
   const csm = config.customStyleManager;
   const pfx = editor.getConfig("stylePrefix")
+  const modal = editor.Modal;
+
 
 
   sm.getSectors().reset(
@@ -34,8 +36,6 @@ export default (editor, config) => {
               'dimensions',
               // "max-width",
               // "min-height",
-              // 'margin',
-              // 'padding'
             ],
             properties: [
               {
@@ -43,7 +43,7 @@ export default (editor, config) => {
                 type: 'composite',
                 properties: [
                   {property: 'background-image', name: '<span></span>'},
-                  {property: 'background-color', name: ' ', type: 'color'}
+                  {property: 'background-color', name: ' ', type: 'color', defaults: '#ffffff'}
 
                 ]
               },
@@ -74,7 +74,6 @@ export default (editor, config) => {
                   {property: 'height', name: 'Height', type: 'integer', units: ['%', 'px'], unit: '%'},
                 ]
               },
-              
           ]
           },
           {
@@ -91,18 +90,18 @@ export default (editor, config) => {
                   property: 'margin',
                   properties:[
                     { name: 'Top', property: 'margin-top' },
-                    { name: 'Right', property: 'margin-right'},
                     { name: 'Bottom', property: 'margin-bottom'},
-                    { name: 'Left', property: 'margin-left'}
+                    { name: 'Left', property: 'margin-left'},
+                    { name: 'Right', property: 'margin-right'},
                   ],
               },
                 {
                   property  : 'padding',
                   properties:[
                     { name: 'Top', property: 'padding-top'},
-                    { name: 'Right', property: 'padding-right'},
                     { name: 'Bottom', property: 'padding-bottom'},
-                    { name: 'Left', property: 'padding-left'}
+                    { name: 'Left', property: 'padding-left'},
+                    { name: 'Right', property: 'padding-right'},
                   ],
                 }
               ],
@@ -134,6 +133,14 @@ export default (editor, config) => {
 
             ],
           },
+          {
+            id: 'button-toogle',
+            name: 'Button Toogle',
+            buildProps: [
+              'margin-padding-button',
+              'trait-button',
+            ]
+          }
         ]
   );
 
@@ -142,10 +149,6 @@ export default (editor, config) => {
       id: "gjs-sm-general",
       title: "General",
     },
-    // {
-    //   id: "gjs-sm-background-util",
-    //   title: "Background"
-    // },
     {
       id: "gjs-sm-layout",
       title: "Margin and Padding",
@@ -154,10 +157,10 @@ export default (editor, config) => {
       id: "gjs-sm-typography",
       title: "Font & Typography",
     },
-    // {
-    //   id: "gjs-traits-manager",
-    //   title: "Component Traits",
-    // },
+    {
+      id: "gjs-sm-button-toogle",
+      title: "Button Toogle",
+    },
     // {
     //   id: "gjs-sm-shadow",
     //   title: "Shadow",
@@ -178,69 +181,99 @@ export default (editor, config) => {
     var siblings = document.getElementsByClassName("gjs-sm-sectors")[0]
       .childNodes;
 
+    
+    
+    const margin_padding_btn = document.getElementById('gjs-sm-margin-padding-button');
+    margin_padding_btn.innerHTML = '<button class="gjs-sm-btn">Margin & Padding</button>';
+    const trait_btn = document.getElementById('gjs-sm-trait-button');
+    trait_btn.innerHTML = '<button class="gjs-sm-btn">Trait</button>';
+    const layout_style_manager = document.getElementById('gjs-sm-layout');
+    layout_style_manager.removeChild(layout_style_manager.getElementsByClassName('gjs-sm-title')[0]);
+    layout_style_manager.style.display = 'none';
+    layout_style_manager.style.borderBottom = 'none';
+
+
+    trait_btn.onclick = (e) => {
+      const alt_el = document.querySelector(".gjs-label[title='Alt']").parentNode.parentNode.parentNode;
+      const title_el = document.querySelector(".gjs-label[title='Title']").parentNode.parentNode.parentNode;
+
+
+      const container = document.createElement('div');
+      container.className = 'gjs-sm-properties';
+      container.appendChild(alt_el);
+      container.appendChild(title_el);
+      modal.setTitle("Trait Options");
+      container.style.display = 'block';
+
+      
+      modal.setContent(container);
+      modal.open();
+
+
+      alt_el.style.display = 'block';
+      title_el.style.display = 'block';
+      
+
+
+
+    }    
+
+
+    margin_padding_btn.onclick = (e) => {
+      modal.setTitle("Margin & Padding Options");
+      layout_style_manager.style.display = 'block';
+      [...layout_style_manager.getElementsByClassName('gjs-sm-property')].forEach((el) => {
+        el.style.display = 'block';
+        el.style.width = '50%';
+        el.getElementsByClassName('gjs-field')[0].style.width = '100%';
+
+      });
+      [...layout_style_manager.querySelectorAll('.gjs-sm-composite.gjs-sm-property')].forEach((el) => {
+        el.style.width = '90%';
+        el.style.margin = 'auto';
+      })
+      
+      modal.setContent(layout_style_manager);
+      modal.open();
+    }
+
     menu_list.map((curr) => {
-    //   let a = document.createElement("a");
-    //   let linkText = document.createTextNode(curr.title);
-    //   a.appendChild(linkText);
-    //   a.title = curr.title;
-    //   a.id = curr.id + "-btn";
-    //   a.addEventListener(
-    //     "click",
-    //     () => {
-    //         showStyleManagerMenu(curr.id, siblings);
-    //         editor.trigger('change:canvasOffset');
-    //         editor.refresh();
-    //       },
-    //     false
-    //   );
-      // comp.appendChild(a);
-      if (curr.id !== "gjs-sm-general" && curr.id !== "gjs-sm-layout") {
+      if (curr.id !== "gjs-sm-general" && curr.id !== "gjs-sm-button-toogle") {
           document.getElementById(curr.id).style.display = "none";
-          // a.className = 'gjs-pn-btn gjs-two-color';
       } else {
-        // a.className = "gjs-four-color active gjs-pn-btn";
+          document.getElementById(curr.id).style.display = "inline-block";
+
       }
     });
 
-    // let btn_collapse_menubar = document.getElementById("gjs-hide-toolbar-btn");
-
-    // btn_collapse_menubar.addEventListener(
-    //   "click",
-    //   () => {
-    //     const main_container = document.getElementById(`${pfx}main-container`);
-    //     if (main_container.classList.contains('collapse')) {
-    //       document.getElementById("style-manager-container").style.display = 'block';
-    //       btn_collapse_menubar.textContent = 'Hide Toolbar';
-    //       main_container.classList.remove('collapse');      
-    //     } else {
-    //       document.getElementById("style-manager-container").style.display = 'none';
-    //       btn_collapse_menubar.textContent = 'Show Toolbar';
-    //       main_container.classList.add('collapse');
-    //     }
-    //     editor.trigger('change:canvasOffset');
-    //     editor.refresh();
-    //   },
-    //   false
-    // );
+    const style_manager_container = document.getElementById('style-manager-container');
+    style_manager_container.appendChild(style_manager_container.firstElementChild);
+    style_manager_container.firstElementChild.style.display = 'none';
 
     [...document.getElementsByClassName('gjs-sm-property')].forEach((el) => {
       el.style.display = 'inline-flex'; 
       el.style.width = 'auto'; 
+    });
 
+    // adding fonts
+    const fontProperty = sm.getProperty('typography', 'font-family');
+    fontProperty.set('list', []);
 
+    fontDefinitions.forEach((font) => {
+      fontProperty.addOption(font)
+    });
+    fontProperty.set('defaults', 'Open Sans, sans-serif');
+
+    const traits_container = document.getElementsByClassName('gjs-trt-traits')[0];
+    traits_container.addEventListener("DOMNodeInserted", (e) => {
+      console.log("hi")
+      document.querySelector(".gjs-label[title='Alt']").parentNode.parentNode.parentNode.style.display = 'none';
+      document.querySelector(".gjs-label[title='Title']").parentNode.parentNode.parentNode.style.display = 'none';
     });
 
   });
 
 
-  // adding fonts
-  let fontProperty = sm.getProperty('typography', 'font-family');
-  let list = fontProperty.get('list');
-
-  fontDefinitions.forEach((font) => {
-    list.push(font)
-  });
-  fontProperty.set('list', list);
 
   
 

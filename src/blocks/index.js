@@ -32,7 +32,10 @@ export default (editor, config) => {
     content: {
       type: "text",
       content: "Insert your text here",
-      style: { padding: "10px" },
+      style: { 
+        padding: "10px", 
+        'font-family': 'Open Sans, sans-serif'
+      },
       activeOnRender: 0,
     },
   });

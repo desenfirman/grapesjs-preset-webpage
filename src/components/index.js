@@ -19,6 +19,10 @@ export default (editor, config = {}) => {
 
   // editor.on('component:create', model => { if (model.get('type') === 'video') { editor.runCommand('open-assets', { target: model }); } });
   
+
+  
+
+
   domc.addType("map", {
     view: {
         onActive(ev) {
@@ -43,6 +47,8 @@ export default (editor, config = {}) => {
       },
   });
 
+
+
   domc.addType("video", {
     model: {
       getProviderTrait() {
@@ -58,8 +64,28 @@ export default (editor, config = {}) => {
           ]
         };
       },
-      
     }
+  });
+
+
+  editor.Components.getTypes().forEach(compType => {
+    let additional_traits = [];
+    console.log(compType.id)
+
+    additional_traits = [
+        ...additional_traits,
+        'alt', 'title',
+    ];
+    domc.addType(compType.id, {
+        model: {
+          defaults: {
+            traits: [
+              ...additional_traits,
+              ...domc.getType(compType.id).model.prototype.defaults.traits
+            ],
+          }
+        }
+    });
   });
 
   editor.on('component:selected', model => {
@@ -67,9 +93,21 @@ export default (editor, config = {}) => {
     var siblings = document.getElementsByClassName("gjs-sm-sectors")[0]
       .childNodes;
 
-    
-    if (model.props().type === 'text') {
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+
+    let type = model.props().type;
+    if (type === 'text') {
       showStyleManagerMenu('gjs-sm-typography', siblings);
+    }
+    else if (type === 'lory-slider' || type === 'map' || type === 'video'){
+      showStyleManagerMenu('gjs-traits-manager', siblings);
+      // editor.trigger('change:canvasOffset');
+      // editor.refresh();
+      sleep(1000);
+      
     }
     else {
       showStyleManagerMenu('gjs-sm-general', siblings);
