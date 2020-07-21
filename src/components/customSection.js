@@ -17,17 +17,20 @@ export default (defaultModel, defaultView) => {
 	    model: {
 	      defaults: {
 	        ...defaultModel.prototype.defaults,
-	        tagName: 'table',
+	        tagName: 'div',
 	        resizable:1,
 	        draggable: 1,
 	        attributes:{
 	          columnSize: 0,
 	        },
 	        style: {
-	              height: '150px',
-	              margin: '0 auto 10px auto',
-	              padding: '5px 5px 5px 5px',
+	              height: 'auto',
+	              'min-height': '150px',
+	              padding: '10px',
 	              width: '100%',
+	              display: 'flex',
+	              'justify-content': 'flex-start',
+	              'align-items': 'stretch'
 	          },
 	        components: []
 	      },
@@ -45,12 +48,15 @@ export default (defaultModel, defaultView) => {
 	          let td = [];
 	          for (let i = 0; i < sect_size; i++) {
 	            td.push({
-	              type: 'cell',
+	              type: 'default',
 	              resizable: true,
 	              style: {
-	                width: `${sect_percentage}%;`,
+	                'flex-basis': `${sect_percentage}%`,
 	                padding: '0',
 	                margin: '0',
+	                'min-height': '75px',
+	                'flex-grow': 1,
+	                'max-width': '100%',
 	                'vertical-align': 'top'
 	              },
 	              content: `<div></div>`
@@ -61,15 +67,7 @@ export default (defaultModel, defaultView) => {
 	          const comp = this.get('components');
 
 	          comp.add(
-	              {
-	                type:'tbody',
-	                components: [
-	                  {
-	                    type: 'row',
-	                    components: td
-	                  }
-	                ]
-	              }
+	              td
 	          );
 	      }
 	    },

@@ -22,6 +22,11 @@ export default (editor, config) => {
     content: {
       type: 'custom-section',
       activeOnRender: 1,
+      // style: {
+      //   'min-width': '300px',
+      //   width: "96%",
+      //   margin: "2%"
+      // },
     },
     activate: true,
   });
@@ -45,7 +50,11 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-image" },
     content: {
       type: "image",
-      style: { color: "black" },
+      style: {
+        height: "auto",
+        width: "200px",
+        color: "black",
+      },
       activeOnRender: 1,
     },
   });
@@ -57,9 +66,11 @@ export default (editor, config) => {
       type: "video",
       src: "img/video2.webm",
       style: {
-        height: "350px",
-        width: "615px",
+        height: "auto",
+        width: "200px",
       },
+      activeOnRender: 1,
+      
     },
   });
  
@@ -69,7 +80,8 @@ export default (editor, config) => {
     attributes: { class: "fa fa-th" },
     content: {
       type: 'grid-items',
-      
+      style: {
+      },
       activeOnRender: 1,
     },
     activate: true,
@@ -80,7 +92,8 @@ export default (editor, config) => {
     attributes: { class: "fa fa-th-list" },
     content: {
       type: 'list-items',
-      
+      style: {
+      },
       activeOnRender: 1,
     },
     activate: true,
@@ -91,7 +104,9 @@ export default (editor, config) => {
     attributes: { class: "fa fa-map-o" },
     content: {
       type: "map",
-      style: { height: "350px" },
+      style: { 
+        height: "350px" 
+      },
       activeOnRender: 1,
       
     },

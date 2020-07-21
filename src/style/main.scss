@@ -62,7 +62,7 @@
 .main-container {
   display: grid;
   grid-template-columns: 15% 35% 35% 15%;
-  grid-template-rows: 4% 6% 90%;
+  grid-template-rows: 4% 8% 89%;
   width: 100%;
   min-height: 100vh;
 
@@ -176,8 +176,7 @@
     // &-width,
     // &-height,
     &-max-width,
-    &-min-height,
-    &-border-style {
+    &-min-height {
       max-width: 20ch;
     }
 
@@ -186,7 +185,7 @@
       &-top-right-radius,
       &-bottom-left-radius,
       &-bottom-right-radius {
-        max-width: 20ch;
+        max-width: 15ch;
         display: inline-flex;
       }
     }
@@ -203,20 +202,56 @@
 
     &-color,
     &-border-color{
-      max-width: 25ch;
+      width: 8ch;
+      .gjs-sm-label{
+          display: none;
+        }
+    }
+
+    &-border-style, &-border-width {
+      max-width: fit-content;
+      .gjs-sm-label{
+          display: none;
+        }
     }
 
     &-background{
-      &-image,
       &-position,
       &-repeat,
       &-attachment,
-      // &-color,
+      &-color,
       &-size
       {
-        max-width: 30ch;
+
+        .gjs-sm-label{
+          display: none;
+        }
+
+        max-width: 10ch;
+      }
+
+      &-image{
+        width: 26ch;
+
+        .gjs-sm-label{
+          display: none;
+        }
+
+        #gjs-sm-preview-box{
+          display: inline-block;
+          width: 3ch;
+          height: 2.5ch;
+          margin: 0;
+        }
+        #gjs-sm-input-holder{
+          margin: 0;
+
+          display: inline-block;
+        }
       }
     }
+
+    
 
 
     &-text-align,
@@ -224,11 +259,10 @@
     &-font-family,
     &-font-weight,
     &-font-style,
-    &-border-width,
     &-font-size,
     &-line-height,
     &-letter-spacing {
-      max-width: 40ch;
+      max-width: 30ch;
     }
 
     &-float,
@@ -241,26 +275,35 @@
     }
 
     &-border {
-      max-width: 80ch;
+      max-width: 50ch;
     }
 
     &-border-radius {
-      width: 50ch;
+      width: fit-content;
     }
 
     &-box-shadow,
     &-background {
-      max-width: 45ch;
+      width: auto;
+      // max-width: 30ch;
     }
 
     &-dimensions {
-      max-width: 70ch;
+      max-width: 50ch;
     }
 
     &-button-toogle{
       width: 14%;
       button{
-        font-size: 2.5ch;
+        font-size: 1.75ch;
+      }
+
+      #gjs-sm-trait-button{
+        width: 30%;
+      }
+
+      #gjs-sm-margin-padding-button{
+        width: 70%;
       }
     }
 
@@ -292,7 +335,14 @@
     flex-direction: column;
     border-bottom: none;
     padding: 5px;
+
+    button, select, input, .gjs-sm-label {
+      font-size: 1.75ch;
+    }
+
   }
+
+ 
 
   .gjs-sm-title {
     font-size: 1.6ch;
@@ -324,7 +374,6 @@
      &__wrp {
       display: inline-flex;
     }
-    background-color: none;
     .gjs-label-wrp{
       width: fit-content;
     }
@@ -332,7 +381,14 @@
     .gjs-field-wrp{
       width: fit-content;
       max-width: 30ch;
+      min-width: 15ch;
+
       margin: auto 5px;
+
+
+      button, select, input, .gjs-sm-label {
+        font-size: 1.75ch;
+      }
     }
 
   }
