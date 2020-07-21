@@ -18,10 +18,6 @@ export default (editor, config = {}) => {
   domc.addType("list-items", listItemsComp(defaultModel, defaultView));
 
   // editor.on('component:create', model => { if (model.get('type') === 'video') { editor.runCommand('open-assets', { target: model }); } });
-  
-
-  
-
 
   domc.addType("map", {
     view: {
@@ -52,6 +48,7 @@ export default (editor, config = {}) => {
 
   domc.addType("video", {
     model: {
+      
       defaults: {
         ...domc.getType('video').model.prototype.defaults,
         style: {
@@ -60,8 +57,34 @@ export default (editor, config = {}) => {
         }
 
       },
+            //,
+      updateTraits() {
+        const prov = this.get('provider');
+        let tagName = 'iframe';
+        let traits =  [{name: 'alt', label: 'Alt'}, {name: 'title', label: 'Title'}];
+
+        switch (prov) {
+          case 'yt':
+          case 'ytnc':
+          this.getYoutubeTraits().forEach((el) => {
+            traits.push(el)
+          })
+            break;
+          default:
+            tagName = 'video';
+            this.getSourceTraits().forEach((el) => {
+              traits.push(el)
+            })
+        }
+
+        this.set({ tagName }, { silent: 1 }); // avoid break in view
+        this.set({ traits });
+        this.em.trigger('component:toggled');
+      },
+
       getProviderTrait() {
-        return {
+        return  {
+
           type: 'select',
           label: 'Provider',
           name: 'provider',
@@ -96,7 +119,6 @@ export default (editor, config = {}) => {
           }
 
           modalBoxForm(editor, config, (passed_form_data) => {
-            console.log(passed_form_data);
             this.model.set(
               'provider',
               passed_form_data.provider
@@ -165,9 +187,6 @@ export default (editor, config = {}) => {
     }
     else if (type === 'lory-slider' || type === 'map' || type === 'video'){
       showStyleManagerMenu('gjs-traits-manager', siblings);
-      // editor.trigger('change:canvasOffset');
-      // editor.refresh();
-      sleep(1000);
       
     }
     else {

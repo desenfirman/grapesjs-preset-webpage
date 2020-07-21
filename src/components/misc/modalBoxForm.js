@@ -56,7 +56,6 @@ export default (editor, config, callbackReturnToComponent) => {
         "onclick",
         "this.select()",
       )
-      console.log(formHolder)
 
 
       if (inputType.type == 'number') {
