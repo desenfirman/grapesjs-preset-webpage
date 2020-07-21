@@ -174,6 +174,20 @@ export default (editor, config) => {
     //   title: "Extra",
     // },
   ];
+  // console.log(sm.getType('file'));
+  // sm.createType('file', {
+  //   model: {
+  //     ...sm.getType('file').model.prototype
+  //   },
+  //   view: {
+  //     ...sm.getType('file').view.prototype
+
+  //   }
+  // })
+    // const pv = this.$previewBox;
+    // pv && pv[v ? 'addClass' : 'removeClass'](`${this.pfx}show`);
+    // pv && pv.css({ display: v ? 'inline-block' : 'none' });
+
 
 
   window.addEventListener("load", () => {
@@ -252,7 +266,7 @@ export default (editor, config) => {
 
     [...document.getElementsByClassName('gjs-sm-property')].forEach((el) => {
       el.style.display = 'inline-flex'; 
-      el.style.width = 'auto'; 
+      // el.style.width = 'auto'; 
     });
 
     // adding fonts
@@ -270,6 +284,25 @@ export default (editor, config) => {
       document.querySelector(".gjs-label[title='Alt']").parentNode.parentNode.parentNode.style.display = 'none';
       document.querySelector(".gjs-label[title='Title']").parentNode.parentNode.parentNode.style.display = 'none';
     });
+
+    // document.querySelector('#s#gjs-sm-preview-box');
+    const prev_box = document.querySelector('#gjs-sm-background-image #gjs-sm-preview-box');
+
+
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type == "attributes") {
+          if (mutation.target.style.display === 'block') {
+            mutation.target.style.display = 'inline-block';
+          }
+        }
+      });
+    });
+
+    observer.observe(prev_box, {
+      attributes: true //configure it to listen to attribute changes
+    });
+    
 
   });
 

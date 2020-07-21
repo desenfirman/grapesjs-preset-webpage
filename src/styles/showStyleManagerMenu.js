@@ -9,18 +9,14 @@ export default (active_id, siblings) => {
       	const trait_manager = document.getElementsByClassName('gjs-trt-traits')[0];
       	trait_manager.style.display = 'inline-block';
       	trait_manager.style.width = '84%';
-
-
+        trait_manager.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
     }else{
     	document.getElementsByClassName('gjs-sm-sectors')[0].style.width = '100%';
     	document.getElementById('gjs-sm-button-toogle').style.width = '14%';
       	const trait_manager = document.getElementsByClassName('gjs-trt-traits')[0];
       	trait_manager.style.display = 'none';
-
-
     }
     siblings.forEach((el) => {
-      // Reset all button to inactive state
       el.style.display = "none";
       
 

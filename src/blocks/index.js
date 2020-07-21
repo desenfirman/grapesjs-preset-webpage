@@ -22,6 +22,11 @@ export default (editor, config) => {
     content: {
       type: 'custom-section',
       activeOnRender: 1,
+      // style: {
+      //   'min-width': '300px',
+      //   width: "96%",
+      //   margin: "2%"
+      // },
     },
     activate: true,
   });
@@ -33,8 +38,9 @@ export default (editor, config) => {
       type: "text",
       content: "Insert your text here",
       style: { 
-        padding: "10px", 
-        'font-family': 'Open Sans, sans-serif'
+        padding: "10px",
+        margin: '5px',
+        'font-family': 'Open Sans, sans-serif',
       },
       activeOnRender: 0,
     },
@@ -45,7 +51,16 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-image" },
     content: {
       type: "image",
-      style: { color: "black" },
+      style: {
+        color: "black",
+        'max-width': 'calc(100% - 10px)',
+        'max-height': 'calc(100% - 10px)',
+        height: 'auto',
+        margin: '5px',
+        display: 'block',
+
+
+      },
       activeOnRender: 1,
     },
   });
@@ -57,9 +72,14 @@ export default (editor, config) => {
       type: "video",
       src: "img/video2.webm",
       style: {
-        height: "350px",
-        width: "615px",
+        'max-width': 'calc(100% - 10px)',
+        'height': 'auto',
+        margin: '5px',
+
+
       },
+      activeOnRender: 1,
+
     },
   });
  
@@ -69,7 +89,8 @@ export default (editor, config) => {
     attributes: { class: "fa fa-th" },
     content: {
       type: 'grid-items',
-      
+      style: {
+      },
       activeOnRender: 1,
     },
     activate: true,
@@ -80,7 +101,8 @@ export default (editor, config) => {
     attributes: { class: "fa fa-th-list" },
     content: {
       type: 'list-items',
-      
+      style: {
+      },
       activeOnRender: 1,
     },
     activate: true,
@@ -91,7 +113,15 @@ export default (editor, config) => {
     attributes: { class: "fa fa-map-o" },
     content: {
       type: "map",
-      style: { height: "350px" },
+      style: { 
+        'max-width': 'calc(100% - 10px)',
+        'max-height': 'calc(100% - 10px)',
+        height: 'auto',
+
+        margin: '5px',
+
+
+      },
       activeOnRender: 1,
       
     },
