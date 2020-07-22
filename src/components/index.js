@@ -57,7 +57,7 @@ export default (editor, config = {}) => {
         }
 
       },
-            //,
+      
       updateTraits() {
         const prov = this.get('provider');
         let tagName = 'iframe';

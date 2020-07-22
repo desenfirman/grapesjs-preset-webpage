@@ -1,29 +1,16 @@
 
 import modalBoxForm from "./misc/modalBoxForm";
 
-let listItem = `<table class="list-item">
-      <tr>
-        <td class="list-item-cell">
-          <table class="list-item-content">
-            <tr class="list-item-row">
-              <td class="list-cell-left">
-                <img class="list-item-image" src="http://placehold.it/150x150/78c5d6/fff/" alt="Image"/>
-              </td>
-              <td class="list-cell-right">
-                <h1 class="card-title">Title here</h1>
-                <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    </table>`;
+
 const contentDefault = [
           {
-            type: 'cell',
+            type: 'default',
+            resizable: {
+              keyWidth: 'flex-basis',
+            },
             style: {
-              width:'30%',
-              padding: '0',
+              'flex-basis': '30%',
+              padding: '5px',
             },
             components: [
               {
@@ -41,12 +28,14 @@ const contentDefault = [
             ],
           },
           {
-            type: 'cell',
+            type: 'default',
+            resizable: {
+              keyWidth: 'flex-basis',
+            },
             style: {
-              width: '70%',
+              'flex-basis': '70%',
               color: 'rgb(111, 119, 125)',
               'background-color':'rgb(255, 255, 255)',
-
               'font-size': '13px',
               'line-height': '20px',
               padding: '10px 20px 0px 20px',
@@ -59,6 +48,7 @@ const contentDefault = [
                     'font-size':'25px',
                     'font-weight':'300',
                     color:'rgb(68, 68, 68)',
+                    'font-family': 'Open Sans, sans-serif',
                 },
                 content: 'Title Here'
               },
@@ -69,6 +59,8 @@ const contentDefault = [
                     overflow: 'hidden',
                     'border-radius': '3px',
                     padding: 0,
+                    'font-family': 'Open Sans, sans-serif',
+                    
                 },
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
               },
@@ -91,24 +83,25 @@ export default (defaultModel, defaultView) => {
       model: {
         defaults: {
           ...defaultModel.prototype.defaults,
-          tagName: 'table',
+          tagName: 'defaults',
           attributes:{
             columnSize: 0,
           },
           resizeable: 1,
           draggable: 1,
           style: {
-                height: '150px',
-                margin: '0 auto 10px auto',
-                padding: '5px 5px 5px 5px',
-                width: '100%'
+                'min-height': '150px',
+                padding: '5px',
+                width: '100%',
+                display: 'flex',
+                'flex-direction': 'column',
+                'align-items': 'stretch'
             },
           components: []
         },
 
         init(ev){
           ev && ev.stopPropagation();
-
           this.listenTo(this, 'change:attributes', this.onColumnSizeChange);
         },
 
@@ -118,30 +111,18 @@ export default (defaultModel, defaultView) => {
             let row_data = []
             for (var i = 0; i < row_size; i++) {
                 row_data.push({
-                  type: 'row',
+                  type: 'defaults',
                   components: {
-                    type: 'cell',
+                    type: 'defaults',
                     style: {
                       height: 'auto',
+                      'min-height': '150px',
                       width: '100%',
-                      margin: '0 auto 20px auto',
+                      display: 'flex',
                       padding: '5px',
                     },
-                    components: {
-                      type: 'table',
-                      style: {
-                        'background-color':'rgb(255, 255, 255)',
-                        'border-radius': '3px',
-                        overflow: 'hidden',
-                        padding: '0',
-                      },
-                      components: {
-                        type: 'row',
-                        components: contentDefault
-                      }
-                    },
+                    components: contentDefault
                   },
-                 
                 });
             };
             
@@ -149,14 +130,8 @@ export default (defaultModel, defaultView) => {
             const comp = this.get('components');
             comp.add(
                 {
-                  type:'table',
-                  components: [
-                    {
-                      type:'tbody',
-                      
-                      components: row_data
-                    }
-                  ]
+                  type:'defaults',
+                  components: row_data
                 }
             );
         }

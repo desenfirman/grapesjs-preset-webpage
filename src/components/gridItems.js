@@ -1,16 +1,7 @@
 
 import modalBoxForm from "./misc/modalBoxForm";
 
-const contentDefault = {
-  type: 'table',
-  style: {
-    'background-color':'rgb(255, 255, 255)',
-    overflow: 'hidden',
-    'border-radius': '3px',
-    'text-align': 'center',
-    padding: 0,
-  },
-  components: [
+const contentDefault = [
     {
       type: 'image',
       attributes: {
@@ -26,10 +17,10 @@ const contentDefault = {
       }
     },
     {
-      type: 'table',
+      type: 'defaults',
       components:[
         {
-          type: 'row',
+          type: 'defaults',
           style: {
             width: '100%',
             padding: '5px 0',
@@ -37,11 +28,11 @@ const contentDefault = {
           },
           components: [
             {
-              type: 'cell',
+              type: 'defaults',
               style: {
                 'font-size':'13px',
                 color:'rgb(111, 119, 125)',
-                padding: '0 10px 20px 10px',
+                padding: '0 10px 10px 10px',
                 width:'100%',
                 'line-height':'20px',
               },
@@ -53,6 +44,8 @@ const contentDefault = {
                     'font-size':'25px',
                     'font-weight':'300',
                     color:'rgb(68, 68, 68)',
+                    'font-family': 'Open Sans, sans-serif',
+                    
                   },
                   content: 'Title Here'
                 },
@@ -63,6 +56,8 @@ const contentDefault = {
                     overflow: 'hidden',
                     'border-radius': '3px',
                     padding: 0,
+                    'font-family': 'Open Sans, sans-serif',
+
                   },
                   content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
                 },
@@ -72,8 +67,7 @@ const contentDefault = {
         }
       ]
     }
-  ]
-}
+  ];
 
 export default (defaultModel, defaultView) => {
   return {
@@ -90,16 +84,14 @@ export default (defaultModel, defaultView) => {
       model: {
         defaults: {
           ...defaultModel.prototype.defaults,
-          tagName: 'table',
+          tagName: 'defaults',
           attributes:{
             columnSize: 0,
           },
-          resizeable: 1,
+          resizable: 1,
           draggable: 1,
           style: {
                 height: '150px',
-                margin: '0 auto 10px auto',
-                padding: '5px 5px 5px 5px',
                 width: '100%'
             },
           components: []
@@ -121,22 +113,27 @@ export default (defaultModel, defaultView) => {
               let row_data = []
               for (let i = 0; i < col_size; i++) {
                 row_data.push({
-                  type: 'cell',
+                  type: 'defaults',
+                  resizable: {
+                    keyWidth: 'flex-basis'
+                  },
                   style: {
-                    width: `${col_width_percentage}%;`,
-                    'min-width': `${col_width_percentage}% !important;`,
-                    padding: '10px',
+                    'flex-basis': `${col_width_percentage}%;`,
+                    'min-height': '150px',
+                    margin: '5px',
                     'vertical-align': 'top',
+                    'background-color':'rgb(255, 255, 255)',
                   },
                   components: contentDefault
                 })
               }
               tbody_data.push({
-                type: 'row',
+                type: 'defaults',
                 style: {
-                  margin: '0 auto 10px',
-                  padding: '5px 0',
+                  padding: '5px',
                   width: '100%',
+                  'min-height': '150px',
+                  display: 'flex',
                 },
                 components: row_data
               })
@@ -146,10 +143,7 @@ export default (defaultModel, defaultView) => {
             const comp = this.get('components');
 
             comp.add(
-                {
-                  type:'tbody',
-                  components: tbody_data
-                }
+                tbody_data
             );
         }
       },

@@ -280,7 +280,6 @@ export default (editor, config) => {
 
     const traits_container = document.getElementsByClassName('gjs-trt-traits')[0];
     traits_container.addEventListener("DOMNodeInserted", (e) => {
-      console.log("hi")
       document.querySelector(".gjs-label[title='Alt']").parentNode.parentNode.parentNode.style.display = 'none';
       document.querySelector(".gjs-label[title='Title']").parentNode.parentNode.parentNode.style.display = 'none';
     });
