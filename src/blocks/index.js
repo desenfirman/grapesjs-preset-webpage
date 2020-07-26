@@ -36,7 +36,7 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-text" },
     content: {
       type: "text",
-      content: "Insert your text here",
+      content: "<p>Insert your text here</p>",
       style: { 
         padding: "10px",
         margin: '5px',

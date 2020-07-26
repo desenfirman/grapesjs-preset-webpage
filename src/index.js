@@ -13,6 +13,7 @@ import blocks from './blocks';
 import components from './components';
 import panels from './panels';
 import styles from './styles';
+import customRTE from './customRTE';
 
 export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) => {
   let config = opts;
@@ -170,6 +171,8 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
   // exportOpts && pluginExport(editor, exportOpts);
   // aviaryOpts && pluginAviary(editor, aviaryOpts);
   // filestackOpts && pluginFilestack(editor, filestackOpts);
+  customRTE(editor, {});
+
   sliderOpts && pluginSlider(editor, sliderOpts);
 
   // Load components
@@ -186,7 +189,9 @@ export default grapesjs.plugins.add('gjs-preset-webpage', (editor, opts = {}) =>
 
   // Load styles
   styles(editor, config);
+
   // console.log(editor.BlockManager);
+
 
 
 });

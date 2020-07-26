@@ -8,8 +8,11 @@ export default (active_id, siblings) => {
 
       	const trait_manager = document.getElementsByClassName('gjs-trt-traits')[0];
       	trait_manager.style.display = 'inline-block';
-      	trait_manager.style.width = '84%';
+      	trait_manager.style.width = '86%';
         trait_manager.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+        // trait_manager.childNodes[0].style.display = 'none';
+        // trait_manager.childNodes[1].style.display = 'none';
+
     }else{
     	document.getElementsByClassName('gjs-sm-sectors')[0].style.width = '100%';
     	document.getElementById('gjs-sm-button-toogle').style.width = '14%';

@@ -32,6 +32,7 @@
 .panel__style{
   grid-area: toolbar-style;
   background-color: $primaryColor;
+
 }
 
 
@@ -293,10 +294,14 @@
     }
 
     &-button-toogle{
-      width: 14%;
+      width: auto;
+      margin: auto;
+      float: right;
       button{
-        font-size: 1.75ch;
+        padding: 5px;
+        font-size: 2ch;
       }
+
 
       #gjs-sm-trait-button{
         width: 30%;
@@ -326,6 +331,8 @@
   .gjs-sm-sectors {
     background-color: rgba(0, 0, 0, 0.1);
     width: 100%;
+    vertical-align: top;
+
 
     height: 100%;
   }
@@ -405,6 +412,15 @@
 .gjs-pn-panel {
   position: static;
 }
+
+.gjs-rte-toolbar {
+  border: none;
+  border-radius: none;
+}
+
+
+
+
 
 .#{$prefix} {
   @each $cnum, $ccol in (one, $primaryColor), (two, $secondaryColor),

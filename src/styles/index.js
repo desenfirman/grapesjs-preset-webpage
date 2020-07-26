@@ -111,25 +111,25 @@ export default (editor, config) => {
             name: "Typography",
             open: true,
             buildProps: [
-              "font-family",
-              "font-size",
-              "text-align",
-              "font-weight",
-              "letter-spacing",
-              "line-height",
+              "message",
+              // "font-size",
+              // "text-align",
+              // "font-weight",
+              // "letter-spacing",
+              // "line-height",
             ],
             properties: [
 
-              {
-                property: "text-align",
-                name: ' ',
-                list: [
-                  { value: "left", className: "fa fa-align-left" },
-                  { value: "center", className: "fa fa-align-center" },
-                  { value: "right", className: "fa fa-align-right" },
-                  { value: "justify", className: "fa fa-align-justify" },
-                ],
-              },
+              // {
+              //   property: "text-align",
+              //   name: ' ',
+              //   list: [
+              //     { value: "left", className: "fa fa-align-left" },
+              //     { value: "center", className: "fa fa-align-center" },
+              //     { value: "right", className: "fa fa-align-right" },
+              //     { value: "justify", className: "fa fa-align-justify" },
+              //   ],
+              // },
 
             ],
           },
@@ -226,10 +226,6 @@ export default (editor, config) => {
 
       alt_el.style.display = 'block';
       title_el.style.display = 'block';
-      
-
-
-
     }    
 
 
@@ -269,14 +265,14 @@ export default (editor, config) => {
       // el.style.width = 'auto'; 
     });
 
-    // adding fonts
-    const fontProperty = sm.getProperty('typography', 'font-family');
-    fontProperty.set('list', []);
+    // // adding fonts
+    // const fontProperty = sm.getProperty('typography', 'font-family');
+    // fontProperty.set('list', []);
 
-    fontDefinitions.forEach((font) => {
-      fontProperty.addOption(font)
-    });
-    fontProperty.set('defaults', 'Open Sans, sans-serif');
+    // fontDefinitions.forEach((font) => {
+    //   fontProperty.addOption(font)
+    // });
+    // fontProperty.set('defaults', 'Open Sans, sans-serif');
 
     const traits_container = document.getElementsByClassName('gjs-trt-traits')[0];
     traits_container.addEventListener("DOMNodeInserted", (e) => {
@@ -302,6 +298,10 @@ export default (editor, config) => {
       attributes: true //configure it to listen to attribute changes
     });
     
+
+
+    document.querySelector('#gjs-sm-message .gjs-sm-label span').textContent = 'Note: Double click to open Rich Text Editor Toolbar'
+    document.querySelector('#gjs-sm-message .gjs-fields').style.display = 'none';
 
   });
 

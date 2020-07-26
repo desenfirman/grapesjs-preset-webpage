@@ -184,13 +184,17 @@ export default (editor, config = {}) => {
     let type = model.props().type;
     if (type === 'text') {
       showStyleManagerMenu('gjs-sm-typography', siblings);
+
+      // rteEl.style.display = 'inline-block';
     }
     else if (type === 'lory-slider' || type === 'map' || type === 'video'){
       showStyleManagerMenu('gjs-traits-manager', siblings);
-      
+      // rteEl.style.display = 'none';
     }
     else {
       showStyleManagerMenu('gjs-sm-general', siblings);
+      // rteEl.style.display = 'none';
+
     }
     editor.trigger('change:canvasOffset');
     editor.refresh();
