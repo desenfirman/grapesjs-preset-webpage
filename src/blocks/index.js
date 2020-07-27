@@ -22,11 +22,6 @@ export default (editor, config) => {
     content: {
       type: 'custom-section',
       activeOnRender: 1,
-      // style: {
-      //   'min-width': '300px',
-      //   width: "96%",
-      //   margin: "2%"
-      // },
     },
     activate: true,
   });
@@ -36,10 +31,11 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-text" },
     content: {
       type: "text",
-      content: "<p>Insert your text here</p>",
+      content: "Insert your text here",
+      tagName: 'p',
       style: { 
-        padding: "10px",
-        margin: '5px',
+        padding: "5px",
+        margin: 'auto',
         'font-family': 'Open Sans, sans-serif',
       },
       activeOnRender: 0,
