@@ -40,10 +40,10 @@ const contentDefault = [
                 {
                   type: 'text',
                   tagName: 'h1',
-                  style: {
-                    'font-size':'25px',
-                    'font-weight':'300',
-                    color:'rgb(68, 68, 68)',
+                  style: { 
+                    'font-size': '25px',
+                    'font-weight': '300',
+                    color: 'rgb(68, 68, 68)',
                     'font-family': 'Open Sans, sans-serif',
                     
                   },
@@ -51,15 +51,14 @@ const contentDefault = [
                 },
                 {
                   type: 'text',
-                  tagName: 'p',
                   style: {
-                    overflow: 'hidden',
+                    // overflow: 'hidden',
                     'border-radius': '3px',
-                    padding: 0,
+                    // padding: 0,
                     'font-family': 'Open Sans, sans-serif',
 
                   },
-                  content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
+                  content: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>'
                 },
               ]
             }

@@ -54,15 +54,13 @@ const contentDefault = [
               },
               {
                 type: 'text',
-                tagName: 'p',
                 style: {
-                    overflow: 'hidden',
                     'border-radius': '3px',
                     padding: 0,
                     'font-family': 'Open Sans, sans-serif',
                     
                 },
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt'
+                content: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt</p>'
               },
             ]
           }

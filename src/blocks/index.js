@@ -31,10 +31,11 @@ export default (editor, config) => {
     attributes: { class: "gjs-fonts gjs-f-text" },
     content: {
       type: "text",
-      content: "Insert your text here",
-      tagName: 'p',
+      content: "<p>Insert your text here</p>",
+      // tagName: 'p',
       style: { 
-        padding: "5px",
+        // padding: "5px",
+        'border-radius': '3px',
         margin: 'auto',
         'font-family': 'Open Sans, sans-serif',
       },
