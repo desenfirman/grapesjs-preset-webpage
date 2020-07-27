@@ -4,17 +4,21 @@ import pluginCKEditor from 'grapesjs-plugin-ckeditor'
 
 
 export default (editor, config) => {
-    let rteToolbar = editor.RichTextEditor.getToolbarEl();
-    [].forEach.call(rteToolbar.children, (child) => {
-        child.style.display = "none";
-    });
+    const rteToolbar = editor.RichTextEditor.getToolbarEl();
+    // [].forEach.call(rteToolbar.children, (child) => {
+    //     child.style.display = "none";
+    // });
+	const rteEl = document.getElementsByClassName('gjs-rte-toolbar')[0];
+	console.log(rteToolbar);
+
+
 
     pluginCKEditor(editor, {
         position: 'center',
         options: {
         	language: 'en',
         	skin: 'moono-dark',
-        	// shar,edSpaces: rteToolbar,
+        	// sharedSpaces: rteToolbar,
     //     	toolbar: [
 	   // //      	{ name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
 				// // { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
@@ -141,16 +145,20 @@ export default (editor, config) => {
 	 });
 
 
+  window.addEventListener("load", () => {
 
-	editor.on("rte:enable", (view) => {
-		const rteEl = document.getElementsByClassName('gjs-rte-toolbar')[0];
-		rteEl.style.display = 'inline-block';
-		rteEl.style.position = 'relative';
-		rteEl.style.top = '0px';
-    	const rte_message = document.querySelector('#gjs-sm-message');
+	// const rteEl = document.getElementsByClassName('gjs-rte-toolbar')[0];
+    const rte_message = document.querySelector('#gjs-sm-message');
+	document.getElementById('gjs-sm-typography').appendChild(rteToolbar);
+
+  	editor.on("rte:enable", (view) => {
+		// rteToolbar.style.display = 'inline-block';
+		rteToolbar.style.position = 'relative';
+		rteToolbar.style.top = '0px';
+		rteToolbar.style.left = '0px';
+		// rteToolbar.style.pointerEvents = 'none';
 
 
-		document.getElementById('gjs-sm-typography').appendChild(rteEl);
 		rte_message.style.display = 'none';
 		// Update by position
         // console.log(rteEl)
@@ -180,4 +188,6 @@ export default (editor, config) => {
 		rte_message.style.display = 'inline-flex';
 
 	});
+  });
+	
 };
